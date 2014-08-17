@@ -1,2 +1,2 @@
-declare var angular: any;
-declare var greeting: string;
+/// <reference path="Lisa/Lisa.d.ts" />
+declare var lisa: Lisa;

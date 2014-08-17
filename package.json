@@ -1,5 +1,5 @@
 {
-  "name": "Modern Webapp",
+  "name": "modern-webapp",
   "version": "0.0.1",
   "description": "A fast, efficient and scalable webapp boilerplate featuring Typescript, Angular, Less and Bootstrap.",
   "main": "Gruntfile.js",
