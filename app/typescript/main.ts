@@ -9,4 +9,3 @@ lisa.input.post("Hi!");
 lisa.output.listen(function(){
 
 })
-// console.log(lisa.greet("hi"));

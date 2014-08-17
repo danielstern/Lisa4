@@ -1,3 +1,9 @@
+var __extends = this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    __.prototype = b.prototype;
+    d.prototype = new __();
+};
 var Lisa = (function () {
     function Lisa() {
         this.input = new LisaBasicInput();
@@ -10,56 +16,79 @@ var Lisa = (function () {
     return Lisa;
 })();
 
-var LisaBasicInput = (function () {
-    function LisaBasicInput() {
-    }
-    LisaBasicInput.prototype.post = function (data) {
-    };
-    LisaBasicInput.prototype.onPost = function (listener) {
-    };
-    return LisaBasicInput;
-})();
-
 var LisaBasicBrain = (function () {
     function LisaBasicBrain() {
     }
     return LisaBasicBrain;
 })();
 
-var LisaBasicOutput = (function () {
-    function LisaBasicOutput() {
+var LisaBasicLogic = (function () {
+    function LisaBasicLogic() {
     }
-    LisaBasicOutput.prototype.listen = function (listener) {
-        console.log("you're listening!");
-        return function () {
-        };
-    };
-    LisaBasicOutput.prototype.broadcast = function (message) {
-        console.log(message);
-    };
-    return LisaBasicOutput;
+    return LisaBasicLogic;
 })();
 
-var LisaBasicCore = (function () {
-    function LisaBasicCore() {
-        var _this = this;
-        this.cycle = function () {
-            _this.cycleListeners.forEach(function (listener) {
-                listener();
-            });
-        };
-        this.cycleListeners = [];
-        this.start();
+var LisaBasicMemory = (function () {
+    function LisaBasicMemory() {
     }
-    LisaBasicCore.prototype.onCycle = function (listener) {
-        this.cycleListeners.push(listener);
-    };
-
-    LisaBasicCore.prototype.start = function () {
-        var _this = this;
-        setInterval(function () {
-            _this.cycle();
-        }, 1);
-    };
-    return LisaBasicCore;
+    return LisaBasicMemory;
 })();
+
+var Moment = (function () {
+    function Moment(details) {
+        if (typeof details === "undefined") { details = undefined; }
+        if (details.subject)
+            this.subject = details.subject;
+        if (details.verb)
+            this.verb = details.verb;
+        if (details.object)
+            this.object = details.object;
+    }
+    return Moment;
+})();
+
+var Idea = (function () {
+    function Idea(name) {
+        this.name = name;
+    }
+    return Idea;
+})();
+
+var Thing = (function (_super) {
+    __extends(Thing, _super);
+    function Thing() {
+        _super.apply(this, arguments);
+    }
+    return Thing;
+})(Idea);
+;
+var Action = (function (_super) {
+    __extends(Action, _super);
+    function Action() {
+        _super.apply(this, arguments);
+    }
+    return Action;
+})(Idea);
+;
+var Quality = (function (_super) {
+    __extends(Quality, _super);
+    function Quality() {
+        _super.apply(this, arguments);
+    }
+    return Quality;
+})(Idea);
+;
+
+var memorySeed = [];
+memorySeed.push(new Moment({
+    subject: new Thing("Mary"),
+    verb: new Action("have"),
+    object: new Thing("lamb"),
+    children: [
+        new Moment({
+            subject: new Thing("lamb"),
+            verb: new Action("is"),
+            object: new Quality("little")
+        })
+    ]
+}));

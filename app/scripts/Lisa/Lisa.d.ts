@@ -5,37 +5,47 @@ declare class Lisa {
     public output: LisaOutput;
     constructor();
 }
-interface LisaInput {
-    post(data: string): void;
-    onPost(listener: Function): void;
-}
-declare class LisaBasicInput implements LisaInput {
-    public post(data: string): void;
-    public onPost(listener: Function): void;
-}
 interface LisaBrain {
 }
 declare class LisaBasicBrain implements LisaBrain {
+    private memory;
+    private logic;
+    private emotion;
 }
-interface LisaOutput {
-    listen(listener: Function): Function;
-    broadcast(message: String): void;
+interface LisaLogic {
 }
-declare class LisaBasicOutput implements LisaOutput {
-    public listen(listener: Function): Function;
-    public broadcast(message: string): void;
+declare class LisaBasicLogic implements LisaLogic {
+    private interpreter;
+    private storyteller;
 }
-interface LisaCore {
-    onCycle(listener: Function): void;
-    start(): void;
+interface LisaMemory {
+    remember: Function;
+    recall: Function;
 }
-declare class LisaBasicCore implements LisaCore {
-    private brain;
-    private input;
-    private output;
-    private cycleListeners;
-    public onCycle(listener: Function): void;
-    private cycle;
-    public start(): void;
-    constructor();
+declare class LisaBasicMemory {
+    private shortTerm;
+    private longTerm;
+    private Language;
 }
+declare class Moment {
+    public subject: Thing;
+    public object: Thing;
+    public verb: Action;
+    public previous: Moment;
+    public next: Moment;
+    public parent: Moment;
+    public children: Moment[];
+    public related: Moment[];
+    constructor(details?: any);
+}
+declare class Idea {
+    private name;
+    constructor(name: string);
+}
+declare class Thing extends Idea {
+}
+declare class Action extends Idea {
+}
+declare class Quality extends Idea {
+}
+declare var memorySeed: Moment[];

@@ -17,70 +17,87 @@ class Lisa {
 		}
 	}
 
-interface LisaInput {
-	post(data : string) : void;
-	onPost(listener: Function) :void;
-}
-
-class LisaBasicInput implements LisaInput {
-	post(data:string) : void {
-
-	}
-	onPost(listener:Function) : void {
-
-	}
-}
 
 interface LisaBrain {
 
 }
 
+
+
 class LisaBasicBrain implements LisaBrain {
+	private memory:LisaMemory;
+	private logic:LisaLogic;
+	private emotion:any;
+	
 
 }
 
-interface LisaOutput {
-	listen(listener:Function) : Function; 
-	broadcast(message:String) : void;
+interface LisaLogic {
+
 }
 
-class LisaBasicOutput implements LisaOutput {
-	listen(listener:Function) : Function {
-		console.log("you're listening!");
-		return function() {
+class LisaBasicLogic implements LisaLogic{
+	/* turns human speech into lisa objects */
+	private interpreter:any;
 
-		};
+	/* turns lisa objects into human speech */
+	private storyteller:any;
+}
+
+interface LisaMemory {
+	/* Stores a memory in short term */
+	remember: Function;
+	/* Returns all memories containing a particular fragment. */
+	recall: Function;
+}
+
+class LisaBasicMemory {
+	private shortTerm:any;
+	private longTerm:any;
+	private Language:any;
+}
+
+
+/* an individual unit of memory */
+class Moment {
+	subject:Thing;
+	object:Thing;
+	verb:Action;
+	previous:Moment;
+	next:Moment;
+	parent:Moment;
+	/* submoments describing this moment. sherlock holmes would have 100 children levels and paris hilton would have 2 */
+	children:Moment[];
+	related:Moment[];
+
+	constructor(details:any = undefined) {
+		if (details.subject) this.subject = details.subject;
+		if (details.verb) this.verb = details.verb;
+		if (details.object) this.object = details.object;
 	}
-	broadcast(message:string) :void {
-		console.log(message);
+}
+
+class Idea {
+	private name;
+	constructor(name:string) {
+		this.name = name;
 	}
 }
 
-interface LisaCore {
-	onCycle(listener:Function) : void;
-	start() : void;
-}
+class Thing extends Idea {};
+class Action extends Idea {};
+class Quality extends Idea {};
 
-class LisaBasicCore implements LisaCore{
-	private brain:LisaBrain;
-	private input:LisaInput;
-	private output:LisaOutput;
-  private cycleListeners:Function[];
-	public onCycle(listener:Function) : void {
-		this.cycleListeners.push(listener);
-	}
-	private cycle= ():void =>{
-		this.cycleListeners.forEach(function(listener){
-			listener();
+var memorySeed:Moment[] = [];
+memorySeed.push(new Moment({
+	subject: new Thing("Mary"),
+	verb: new Action("have"),
+	object: new Thing("lamb"),
+	children:[
+		new Moment({
+			subject: new Thing("lamb"),
+			verb: new Action("is"),
+			object: new Quality("little")
 		})
-	}
-	public start():void {
-		setInterval(()=>{
-			this.cycle();
-		},1);
-	}
-	constructor() {
-		this.cycleListeners = [];
-		this.start();
-	}
-}
+	]
+}))
