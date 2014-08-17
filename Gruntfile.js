@@ -53,7 +53,7 @@ module.exports = function(grunt) {
                 files: ['Gruntfile.js']
             },
             typescript: {
-                files: ['<%= config.app %>/typescript/{,*/}*.ts'],
+                files: ['<%= config.app %>/typescript/**/{,*/}*.ts'],
                 tasks: ['typescript']
             },
             styles: {
@@ -67,7 +67,7 @@ module.exports = function(grunt) {
                 files: [
                     '<%= config.app %>/{,*/}*.html',
                     '.tmp/styles/{,*/}*.css',
-                    'app/typescript/{,*/}*.ts',
+                    'app/typescript/**/{,*/}*.ts',
                     '<%= config.app %>/images/{,*/}*'
                 ]
             }
@@ -147,8 +147,8 @@ module.exports = function(grunt) {
         // typescript yeah!
         typescript: {
             base: {
-                src: ['app/typescript/**/*.ts'],
-                dest: 'app/scripts/',
+                src: ['app/typescript/**/{,*/}*.ts'],
+                dest: 'app/scripts/script.js',
                 options: {
                     module: 'amd', //or commonjs
                     target: 'es5', //or es3
