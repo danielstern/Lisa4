@@ -112,13 +112,6 @@ var LisaBasicLogic = (function () {
     }
     return LisaBasicLogic;
 })();
-var LisaBasicOutput = (function (_super) {
-    __extends(LisaBasicOutput, _super);
-    function LisaBasicOutput() {
-        _super.apply(this, arguments);
-    }
-    return LisaBasicOutput;
-})(BasicListener);
 var BasicListener = (function () {
     function BasicListener() {
     }
@@ -142,6 +135,14 @@ var BasicListener = (function () {
     };
     return BasicListener;
 })();
+
+var LisaBasicOutput = (function (_super) {
+    __extends(LisaBasicOutput, _super);
+    function LisaBasicOutput() {
+        _super.apply(this, arguments);
+    }
+    return LisaBasicOutput;
+})(BasicListener);
 angular.module("LisaDemo", []);
 
 var lisa = new Lisa();

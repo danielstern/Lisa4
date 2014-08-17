@@ -1,3 +1,5 @@
+/// <reference path="../Utilities/Listener.ts" />
+
 interface LisaOutput {
 	listen: Function;
 	trigger: Function;

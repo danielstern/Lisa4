@@ -67,13 +67,6 @@ declare class LisaBasicLogic implements LisaLogic {
     private interpreter;
     private storyteller;
 }
-interface LisaOutput {
-    listen: Function;
-    trigger: Function;
-}
-declare class LisaBasicOutput extends BasicListener implements LisaOutput {
-    public contructor: () => {};
-}
 interface Listener {
     listen(listener: Function): Function;
     trigger(details: any): any;
@@ -82,6 +75,13 @@ declare class BasicListener implements Listener {
     private listeners;
     public listen(listener: Function): Function;
     public trigger(details?: any): void;
+}
+interface LisaOutput {
+    listen: Function;
+    trigger: Function;
+}
+declare class LisaBasicOutput extends BasicListener implements LisaOutput {
+    public contructor: () => {};
 }
 declare var angular: any;
 declare var lisa: Lisa;
