@@ -1,12 +1,19 @@
 class Lisa {
-		core:any;
-		brain:any;
+		core:LisaCore;
+		brain:LisaBrain;
 		input:LisaInput;
 		output:LisaOutput;
 		constructor() {
-			console.log("i'm lisa. you still need to give me an input and an output and a brain");
 			this.input = new LisaBasicInput();
 			this.output = new LisaBasicOutput();
+			this.brain = new LisaBasicBrain();
+			this.core = new LisaBasicCore();
+
+			// this.core.setBrain(this.brain);
+			// this.core.setInput(this.input);
+			// this.core.setOutput(this.output);
+
+			console.log("There seems to be a problem with the life support system, Dave.");
 		}
 	}
 
@@ -17,11 +24,19 @@ interface LisaInput {
 
 class LisaBasicInput implements LisaInput {
 	post(data:string) : void {
-		console.log("this is the basicest form of input");
+
 	}
 	onPost(listener:Function) : void {
 
 	}
+}
+
+interface LisaBrain {
+
+}
+
+class LisaBasicBrain implements LisaBrain {
+
 }
 
 interface LisaOutput {
@@ -43,26 +58,29 @@ class LisaBasicOutput implements LisaOutput {
 
 interface LisaCore {
 	onCycle(listener:Function) : void;
-	cycle():void;
 	start() : void;
 }
 
-class LisaBasicCore {
-	cycleListeners:Function[];
-	onCycle(listener:Function) : void {
+class LisaBasicCore implements LisaCore{
+	private brain:LisaBrain;
+	private input:LisaInput;
+	private output:LisaOutput;
+  private cycleListeners:Function[];
+	public onCycle(listener:Function) : void {
 		this.cycleListeners.push(listener);
 	}
-	cycle() : void {
+	private cycle= ():void =>{
 		this.cycleListeners.forEach(function(listener){
 			listener();
 		})
 	}
-	start() : void {
-		setInterval(function(){
+	public start():void {
+		setInterval(()=>{
 			this.cycle();
 		},1);
 	}
 	constructor() {
+		this.cycleListeners = [];
 		this.start();
 	}
 }

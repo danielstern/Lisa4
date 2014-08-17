@@ -1,6 +1,6 @@
 declare class Lisa {
-    public core: any;
-    public brain: any;
+    public core: LisaCore;
+    public brain: LisaBrain;
     public input: LisaInput;
     public output: LisaOutput;
     constructor();
@@ -13,6 +13,10 @@ declare class LisaBasicInput implements LisaInput {
     public post(data: string): void;
     public onPost(listener: Function): void;
 }
+interface LisaBrain {
+}
+declare class LisaBasicBrain implements LisaBrain {
+}
 interface LisaOutput {
     listen(listener: Function): Function;
     broadcast(message: String): void;
@@ -23,13 +27,15 @@ declare class LisaBasicOutput implements LisaOutput {
 }
 interface LisaCore {
     onCycle(listener: Function): void;
-    cycle(): void;
     start(): void;
 }
-declare class LisaBasicCore {
-    public cycleListeners: Function[];
+declare class LisaBasicCore implements LisaCore {
+    private brain;
+    private input;
+    private output;
+    private cycleListeners;
     public onCycle(listener: Function): void;
-    public cycle(): void;
+    private cycle;
     public start(): void;
     constructor();
 }

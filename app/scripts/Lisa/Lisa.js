@@ -1,8 +1,11 @@
 var Lisa = (function () {
     function Lisa() {
-        console.log("i'm lisa. you still need to give me an input and an output and a brain");
         this.input = new LisaBasicInput();
         this.output = new LisaBasicOutput();
+        this.brain = new LisaBasicBrain();
+        this.core = new LisaBasicCore();
+
+        console.log("There seems to be a problem with the life support system, Dave.");
     }
     return Lisa;
 })();
@@ -11,11 +14,16 @@ var LisaBasicInput = (function () {
     function LisaBasicInput() {
     }
     LisaBasicInput.prototype.post = function (data) {
-        console.log("this is the basicest form of input");
     };
     LisaBasicInput.prototype.onPost = function (listener) {
     };
     return LisaBasicInput;
+})();
+
+var LisaBasicBrain = (function () {
+    function LisaBasicBrain() {
+    }
+    return LisaBasicBrain;
 })();
 
 var LisaBasicOutput = (function () {
@@ -34,19 +42,23 @@ var LisaBasicOutput = (function () {
 
 var LisaBasicCore = (function () {
     function LisaBasicCore() {
+        var _this = this;
+        this.cycle = function () {
+            _this.cycleListeners.forEach(function (listener) {
+                listener();
+            });
+        };
+        this.cycleListeners = [];
         this.start();
     }
     LisaBasicCore.prototype.onCycle = function (listener) {
         this.cycleListeners.push(listener);
     };
-    LisaBasicCore.prototype.cycle = function () {
-        this.cycleListeners.forEach(function (listener) {
-            listener();
-        });
-    };
+
     LisaBasicCore.prototype.start = function () {
+        var _this = this;
         setInterval(function () {
-            this.cycle();
+            _this.cycle();
         }, 1);
     };
     return LisaBasicCore;
