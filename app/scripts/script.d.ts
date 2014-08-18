@@ -1,3 +1,43 @@
+interface Listener {
+    listen(listener: Function): Function;
+    trigger(details: any): any;
+}
+declare class BasicListener implements Listener {
+    private listeners;
+    public listen: (listener: Function) => () => void;
+    public trigger(details?: any): void;
+}
+interface LisaBrain {
+    think: Function;
+    input: Function;
+    getOutput: Function;
+}
+declare class LisaBasicBrain extends BasicListener implements LisaBrain {
+    private memory;
+    private logic;
+    private emotion;
+    private outputBuffer;
+    constructor();
+    public input(thing: any): void;
+    public think(): void;
+    public getOutput(): String;
+}
+interface LisaEmotion {
+}
+declare class LisaBasicEmotion implements LisaEmotion {
+}
+interface LisaLogic {
+    step: Function;
+    process: Function;
+    listen: Function;
+}
+declare class LisaBasicLogic extends BasicListener implements LisaLogic {
+    private interpreter;
+    private storyteller;
+    public step(): void;
+    public process(thing: any): void;
+    constructor();
+}
 interface LisaMemory {
     remember: Function;
     recall: Function;
@@ -6,6 +46,8 @@ declare class LisaBasicMemory {
     private shortTerm;
     private longTerm;
     private Language;
+    public remember(): void;
+    public recall(): void;
 }
 declare class Moment {
     public subject: Thing;
@@ -29,22 +71,6 @@ declare class Action extends Idea {
 declare class Quality extends Idea {
 }
 declare var memorySeed: Moment[];
-interface LisaBrain {
-}
-declare class LisaBasicBrain implements LisaBrain {
-    private memory;
-    private logic;
-    private emotion;
-}
-interface Listener {
-    listen(listener: Function): Function;
-    trigger(details: any): any;
-}
-declare class BasicListener implements Listener {
-    private listeners;
-    public listen(listener: Function): Function;
-    public trigger(details?: any): void;
-}
 interface LisaCore {
     listen(listener: Function): void;
     start(): void;
@@ -54,14 +80,14 @@ declare class LisaBasicCore extends BasicListener implements LisaCore {
     private input;
     private output;
     public start(): void;
+    constructor();
 }
 interface LisaInput {
     post(data: string): void;
-    onPost(listener: Function): void;
+    listen(listener: Function): void;
 }
-declare class LisaBasicInput implements LisaInput {
+declare class LisaBasicInput extends BasicListener implements LisaInput {
     public post(data: string): void;
-    public onPost(listener: Function): void;
 }
 declare class Lisa {
     public core: LisaCore;
@@ -70,18 +96,13 @@ declare class Lisa {
     public output: LisaOutput;
     constructor();
 }
-interface LisaLogic {
-}
-declare class LisaBasicLogic implements LisaLogic {
-    private interpreter;
-    private storyteller;
-}
 interface LisaOutput {
     listen: Function;
     trigger: Function;
+    broadcast: Function;
 }
 declare class LisaBasicOutput extends BasicListener implements LisaOutput {
-    public contructor: () => {};
+    public broadcast(message: any): void;
 }
 declare var angular: any;
 declare var lisa: Lisa;

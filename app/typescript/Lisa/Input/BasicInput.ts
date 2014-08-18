@@ -1,13 +1,11 @@
 interface LisaInput {
 	post(data : string) : void;
-	onPost(listener: Function) :void;
+	listen(listener: Function) :void;
 }
 
-class LisaBasicInput implements LisaInput {
-	post(data:string) : void {
-
+class LisaBasicInput extends BasicListener implements LisaInput {
+	post(data:string) :void {
+		this.trigger(data);
 	}
-	onPost(listener:Function) : void {
-
-	}
+	
 }

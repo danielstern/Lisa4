@@ -9,6 +9,14 @@ class LisaBasicMemory {
 	private shortTerm:any;
 	private longTerm:any;
 	private Language:any;
+
+	remember() {
+
+	}
+
+	recall() {
+		
+	}
 }
 
 

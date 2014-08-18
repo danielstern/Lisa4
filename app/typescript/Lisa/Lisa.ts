@@ -9,10 +9,14 @@ class Lisa {
 		this.brain = new LisaBasicBrain();
 		this.core = new LisaBasicCore();
 
-		// this.core.setBrain(this.brain);
-		// this.core.setInput(this.input);
-		// this.core.setOutput(this.output);
+		this.input.listen(function(thing){
+			this.brain.input(thing);
+			})
 
-		console.log("There seems to be a problem with the life support system, Dave.");
+		this.core.listen(()=>{
+			// console.log('core step')
+			this.brain.think();
+			this.output.broadcast(this.brain.getOutput());
+			})		
 	}
 }

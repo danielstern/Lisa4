@@ -3,12 +3,13 @@
 interface LisaOutput {
 	listen: Function;
 	trigger: Function;
+	broadcast: Function;
 
 }
 
 class LisaBasicOutput extends BasicListener implements LisaOutput {
-	contructor: ()=>{
-
+	broadcast(message:any) {
+		console.log(message);
 	}
 }
 
