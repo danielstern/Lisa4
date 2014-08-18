@@ -8,7 +8,6 @@ var BasicListener = (function () {
             };
             canceller.prototype.id = id;
             _this.listeners.push(listener);
-
             return function () {
                 _this.listeners.forEach(function (listener) {
                     console.log("todo... cancel listener");
@@ -154,7 +153,6 @@ var LisaBasicCore = (function (_super) {
         this.input = new LisaBasicInput();
         this.output = new LisaBasicOutput();
 
-        console.log('core starting');
         this.start();
     }
     LisaBasicCore.prototype.start = function () {

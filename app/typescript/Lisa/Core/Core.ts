@@ -23,7 +23,6 @@ class LisaBasicCore extends BasicListener implements LisaCore {
 		this.input = new LisaBasicInput();
 		this.output = new LisaBasicOutput();
 
-		console.log('core starting');
 		this.start();
 	}
 }

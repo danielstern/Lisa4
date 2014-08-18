@@ -20,7 +20,6 @@ class LisaBasicBrain extends BasicListener implements LisaBrain {
 		this.emotion = new LisaBasicEmotion();
 
 		this.logic.listen((thought:String)=>{
-			// console.log("logic listen...",thought);
 			this.outputBuffer = thought;
 			})
 

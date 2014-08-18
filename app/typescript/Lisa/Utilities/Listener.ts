@@ -12,7 +12,6 @@ class BasicListener implements Listener {
 		}
 		canceller.prototype.id = id;
 		this.listeners.push(listener);
-		// console.log("creating listener")
 		return () => {
 			this.listeners.forEach(function(listener){
 				console.log("todo... cancel listener");
