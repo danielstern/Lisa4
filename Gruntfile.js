@@ -152,7 +152,7 @@ module.exports = function(grunt) {
                 options: {
                     module: 'commonjs', //or commonjs
                     target: 'es5', //or es3
-                    basePath: 'app/typescript',
+                    basePath: '/',
                     // sourceMap: true,
                     declaration: true
                 }
