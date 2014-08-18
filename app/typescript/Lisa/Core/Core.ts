@@ -1,3 +1,6 @@
+/// <reference path="../Utilities/Listener.ts" />
+
+
 interface LisaCore {
 	listen(listener:Function) : void;
 	start() : void;

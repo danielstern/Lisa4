@@ -36,6 +36,15 @@ declare class LisaBasicBrain implements LisaBrain {
     private logic;
     private emotion;
 }
+interface Listener {
+    listen(listener: Function): Function;
+    trigger(details: any): any;
+}
+declare class BasicListener implements Listener {
+    private listeners;
+    public listen(listener: Function): Function;
+    public trigger(details?: any): void;
+}
 interface LisaCore {
     listen(listener: Function): void;
     start(): void;
@@ -66,15 +75,6 @@ interface LisaLogic {
 declare class LisaBasicLogic implements LisaLogic {
     private interpreter;
     private storyteller;
-}
-interface Listener {
-    listen(listener: Function): Function;
-    trigger(details: any): any;
-}
-declare class BasicListener implements Listener {
-    private listeners;
-    public listen(listener: Function): Function;
-    public trigger(details?: any): void;
 }
 interface LisaOutput {
     listen: Function;

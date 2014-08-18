@@ -150,7 +150,7 @@ module.exports = function(grunt) {
                 src: ['app/typescript/**/{,*/}*.ts'],
                 dest: 'app/scripts/script.js',
                 options: {
-                    module: 'amd', //or commonjs
+                    module: 'commonjs', //or commonjs
                     target: 'es5', //or es3
                     basePath: 'app/typescript',
                     // sourceMap: true,
